@@ -20,7 +20,7 @@ export const createSession = async (data: { start_time: string }) => {
 export const getSessions = async () => {
   try {
     logger.info("Retrieving milking sessions");
-    const sessions = await MilkingSession.find().sort({ createdAt: -1 });
+    const sessions = await MilkingSession.find({ status: "completed" }).sort({ createdAt: -1 });
     logger.info("Successfully retrieved milking sessions");
     return sessions;
   } catch (error) {
